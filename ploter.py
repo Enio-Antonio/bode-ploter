@@ -3,6 +3,10 @@ import control
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_wxagg import FigureCanvasWxAgg as FigureCanvas
 
+from warnings import filterwarnings
+
+filterwarnings("ignore", category=FutureWarning)
+
 class BodePlotFrame(wx.Frame):
     def __init__(self, *args, **kw):
         super(BodePlotFrame, self).__init__(*args, **kw)
@@ -46,7 +50,10 @@ class BodePlotFrame(wx.Frame):
 
             sistema = control.TransferFunction(num, den)
             print("\nFunção de transferência:")
-            print(sistema)
+            sistema_to_str = str(sistema).split('\n')
+            print(sistema_to_str[4]) # no índice 4 começa a função
+            print(sistema_to_str[5])
+            print(sistema_to_str[6])
 
             self.figure.clear()
 
