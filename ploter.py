@@ -37,6 +37,8 @@ class BodePlotFrame(wx.Frame):
 
         plot_btn.Bind(wx.EVT_BUTTON, self.on_plot)
 
+        self.Bind(wx.EVT_CLOSE, self.on_close)
+
     def on_plot(self, event):
         try:
             num = [float(x) for x in self.num.GetValue().split()]
@@ -60,6 +62,10 @@ class BodePlotFrame(wx.Frame):
 
         except Exception as e:
             wx.MessageBox(f"Erro ao processar: {e}", "Erro", wx.ICON_ERROR)
+
+    def on_close(self, event):
+        self.canvas.Close()
+        self.Close()
 
 def main():
     app = wx.App(False)
